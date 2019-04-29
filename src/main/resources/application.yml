@@ -1,0 +1,35 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://your mysql url/sy_user?userUnicode=true&characterEncoding=utf-8&allowMultiQueries=true&useSSL=false
+    username: mysql username
+    password: mysql password
+
+    view:
+      prefix: /static/
+
+
+
+mybatis:
+  mapper-locations: classpath:mybatis-mapper/*.xml
+  type-aliases-package: com.herb2sy.user.pojo
+
+server:
+  port: 10001
+#logging:
+#  file:
+#  path:
+#  config: classpath:logback-boot.xml
+#  level:
+#    org.springframework.web: DEBUG
+
+
+redis:
+  host: 127.0.0.1
+  port: 6379
+  database: 2
+  pool:
+    max-idle: 8
+    min-idle: 0
+    max-active: 8
+    max-wait: -1

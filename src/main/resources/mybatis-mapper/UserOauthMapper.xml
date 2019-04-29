@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.herb2sy.user.dao.UserOauthMapper">
+  <resultMap id="BaseResultMap" type="com.herb2sy.user.pojo.UserOauth">
+    <id column="uid" jdbcType="VARCHAR" property="uid" />
+    <result column="t_create" jdbcType="TIMESTAMP" property="tCreate" />
+    <result column="t_modify" jdbcType="TIMESTAMP" property="tModify" />
+    <result column="t_delete" jdbcType="TIMESTAMP" property="tDelete" />
+    <result column="is_delete" jdbcType="INTEGER" property="isDelete" />
+    <result column="user_uid" jdbcType="VARCHAR" property="userUid" />
+    <result column="unionid" jdbcType="VARCHAR" property="unionid" />
+    <result column="openid" jdbcType="VARCHAR" property="openid" />
+    <result column="oauth_type" jdbcType="INTEGER" property="oauthType" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    uid, t_create, t_modify, t_delete, is_delete, user_uid, unionid, openid, oauth_type
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from user_oauth
+    where uid = #{uid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from user_oauth
+    where uid = #{uid,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.herb2sy.user.pojo.UserOauth">
+    insert into user_oauth (uid, t_create, t_modify, 
+      t_delete, is_delete, user_uid, 
+      unionid, openid, oauth_type
+      )
+    values (#{uid,jdbcType=VARCHAR}, #{tCreate,jdbcType=TIMESTAMP}, #{tModify,jdbcType=TIMESTAMP}, 
+      #{tDelete,jdbcType=TIMESTAMP}, #{isDelete,jdbcType=INTEGER}, #{userUid,jdbcType=VARCHAR}, 
+      #{unionid,jdbcType=VARCHAR}, #{openid,jdbcType=VARCHAR}, #{oauthType,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.herb2sy.user.pojo.UserOauth">
+    insert into user_oauth
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="uid != null">
+        uid,
+      </if>
+      <if test="tCreate != null">
+        t_create,
+      </if>
+      <if test="tModify != null">
+        t_modify,
+      </if>
+      <if test="tDelete != null">
+        t_delete,
+      </if>
+      <if test="isDelete != null">
+        is_delete,
+      </if>
+      <if test="userUid != null">
+        user_uid,
+      </if>
+      <if test="unionid != null">
+        unionid,
+      </if>
+      <if test="openid != null">
+        openid,
+      </if>
+      <if test="oauthType != null">
+        oauth_type,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="uid != null">
+        #{uid,jdbcType=VARCHAR},
+      </if>
+      <if test="tCreate != null">
+        #{tCreate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="tModify != null">
+        #{tModify,jdbcType=TIMESTAMP},
+      </if>
+      <if test="tDelete != null">
+        #{tDelete,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isDelete != null">
+        #{isDelete,jdbcType=INTEGER},
+      </if>
+      <if test="userUid != null">
+        #{userUid,jdbcType=VARCHAR},
+      </if>
+      <if test="unionid != null">
+        #{unionid,jdbcType=VARCHAR},
+      </if>
+      <if test="openid != null">
+        #{openid,jdbcType=VARCHAR},
+      </if>
+      <if test="oauthType != null">
+        #{oauthType,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.herb2sy.user.pojo.UserOauth">
+    update user_oauth
+    <set>
+      <if test="tCreate != null">
+        t_create = #{tCreate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="tModify != null">
+        t_modify = #{tModify,jdbcType=TIMESTAMP},
+      </if>
+      <if test="tDelete != null">
+        t_delete = #{tDelete,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isDelete != null">
+        is_delete = #{isDelete,jdbcType=INTEGER},
+      </if>
+      <if test="userUid != null">
+        user_uid = #{userUid,jdbcType=VARCHAR},
+      </if>
+      <if test="unionid != null">
+        unionid = #{unionid,jdbcType=VARCHAR},
+      </if>
+      <if test="openid != null">
+        openid = #{openid,jdbcType=VARCHAR},
+      </if>
+      <if test="oauthType != null">
+        oauth_type = #{oauthType,jdbcType=INTEGER},
+      </if>
+    </set>
+    where uid = #{uid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.herb2sy.user.pojo.UserOauth">
+    update user_oauth
+    set t_create = #{tCreate,jdbcType=TIMESTAMP},
+      t_modify = #{tModify,jdbcType=TIMESTAMP},
+      t_delete = #{tDelete,jdbcType=TIMESTAMP},
+      is_delete = #{isDelete,jdbcType=INTEGER},
+      user_uid = #{userUid,jdbcType=VARCHAR},
+      unionid = #{unionid,jdbcType=VARCHAR},
+      openid = #{openid,jdbcType=VARCHAR},
+      oauth_type = #{oauthType,jdbcType=INTEGER}
+    where uid = #{uid,jdbcType=VARCHAR}
+  </update>
+
+</mapper>

@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.herb2sy.user.dao.LoginLogMapper">
+  <resultMap id="BaseResultMap" type="com.herb2sy.user.pojo.LoginLog">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="t_create" jdbcType="TIMESTAMP" property="tCreate" />
+    <result column="ip" jdbcType="VARCHAR" property="ip" />
+    <result column="addr" jdbcType="VARCHAR" property="addr" />
+    <result column="login_oauth" jdbcType="VARCHAR" property="loginOauth" />
+    <result column="description" jdbcType="VARCHAR" property="description" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, t_create, ip, addr, login_oauth, description
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from user_login_log
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from user_login_log
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.herb2sy.user.pojo.LoginLog">
+    insert into user_login_log (id, t_create, ip, 
+      addr, login_oauth, description
+      )
+    values (#{id,jdbcType=INTEGER}, #{tCreate,jdbcType=TIMESTAMP}, #{ip,jdbcType=VARCHAR}, 
+      #{addr,jdbcType=VARCHAR}, #{loginOauth,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.herb2sy.user.pojo.LoginLog">
+    insert into user_login_log
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="tCreate != null">
+        t_create,
+      </if>
+      <if test="ip != null">
+        ip,
+      </if>
+      <if test="addr != null">
+        addr,
+      </if>
+      <if test="loginOauth != null">
+        login_oauth,
+      </if>
+      <if test="description != null">
+        description,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="tCreate != null">
+        #{tCreate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="ip != null">
+        #{ip,jdbcType=VARCHAR},
+      </if>
+      <if test="addr != null">
+        #{addr,jdbcType=VARCHAR},
+      </if>
+      <if test="loginOauth != null">
+        #{loginOauth,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null">
+        #{description,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.herb2sy.user.pojo.LoginLog">
+    update user_login_log
+    <set>
+      <if test="tCreate != null">
+        t_create = #{tCreate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="ip != null">
+        ip = #{ip,jdbcType=VARCHAR},
+      </if>
+      <if test="addr != null">
+        addr = #{addr,jdbcType=VARCHAR},
+      </if>
+      <if test="loginOauth != null">
+        login_oauth = #{loginOauth,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null">
+        description = #{description,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.herb2sy.user.pojo.LoginLog">
+    update user_login_log
+    set t_create = #{tCreate,jdbcType=TIMESTAMP},
+      ip = #{ip,jdbcType=VARCHAR},
+      addr = #{addr,jdbcType=VARCHAR},
+      login_oauth = #{loginOauth,jdbcType=VARCHAR},
+      description = #{description,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+</mapper>
